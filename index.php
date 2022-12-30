@@ -139,14 +139,28 @@ $pokemon = json_decode($data);
                                 }
                                 // print_r($evolutionsArray);
 
+                                
+                                if(array_key_exists('$evolutionsArray[$i]',$_POST)){
+                                    changePokemon();
+                                }
+                                function changePokemon(){
+                                    $pokemonid = '$evolutionsArray[$i]';
+                                }
+                            ?>
+                        <form method="get">
+                            <?php
                                 for($i=0; $i < count($evolutionsArray); $i++){
                                     $pokemonimage = file_get_contents("https://pokeapi.co/api/v2/pokemon/".$evolutionsArray[$i].'/');  
                                     // var_dump($pokemonimage);                             
                                     $images = json_decode($pokemonimage);
                                     // var_dump($images->sprites->front_default);
-                                    echo "<img src=".$images->sprites->front_default. ">";
+                                    echo "<a>";
+                                    echo "<img name = '$evolutionsArray[$i]' src=".$images->sprites->front_default. ">";
+                                    echo "</a>";
                                 }
                             ?>
+                            <!-- <button type = click>Click</button> -->
+                        </form> 
                         <!-- here I have 3 buttons that are images of the pokemon's evolution -->
                     </div>
                 </div>
